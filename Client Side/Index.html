@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Page metadata -->
+  <meta charset="UTF-8">
+  <title>Crypto Trading Simulator</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Libraries and app script -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1"></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+
+<!-- Page header -->
+<header>
+  <h1>Mits Crypto Trading Simulator</h1>
+  <p>Simulated trading with live market prices</p>
+</header>
+
+<!-- Connection status -->
+<section id="status">
+  <span id="connection-status">Connecting...</span>
+  <button id="reconnect-btn" style="display:none;">Reconnect</button>
+</section>
+
+<!-- Offline warning banner -->
+<section id="offline-banner" style="display:none;">
+  <p>⚠️ Server disconnected. Please restart the server.</p>
+</section>
+
+<main class="dashboard">
+
+  <!-- MARKET PANEL -->
+  <section class="market">
+
+    <!-- Current coin price -->
+    <div class="price-box">
+      <h2 class="coin-title">
+        <img 
+          src="https://cryptologos.cc/logos/bitcoin-btc-logo.png?v=029"
+          alt="Bitcoin Logo"
+          class="coin-logo"
+        />
+        Bitcoin (BTC)
+      </h2>
+      <p class="price">$<span id="live-price">--</span></p>
+    </div>
+
+    <!-- Timeframe selector -->
+    <div class="timeframe">
+      <div class="timeframe-label">Timeframe</div>
+      <div class="timeframe-toggle">
+        <button class="tf-btn" data-minutes="1">1 Min</button>
+        <button class="tf-btn active" data-minutes="5">5 Min</button>
+      </div>
+    </div>
+
+    <!-- Indicator toggles -->
+    <div class="indicator-panel">
+
+      <!-- SMA toggle -->
+      <div class="indicator-toggle">
+        <label>
+          <input type="checkbox" id="sma-toggle">
+          <span class="slider"></span>
+          <span class="label-text">Simple Moving Average (SMA)</span>
+        </label>
+      </div>
+
+      <!-- EMA toggle -->
+      <div class="indicator-toggle">
+        <label>
+          <input type="checkbox" id="ema-toggle">
+          <span class="slider"></span>
+          <span class="label-text">Exponential Moving Average (EMA)</span>
+        </label>
+      </div>
+
+      <!-- RSI toggle -->
+      <div class="indicator-toggle">
+        <label>
+          <input type="checkbox" id="rsi-toggle">
+          <span class="slider"></span>
+          <span class="label-text">Relative Strength Index (RSI)</span>
+        </label>
+      </div>
+
+    </div>
+
+    <!-- Price chart -->
+    <div class="chart-container">
+      <canvas id="price-chart"></canvas>
+    </div>
+
+  </section>
+
+  <!-- TRADING PANEL -->
+  <section class="trading">
+
+    <!-- Portfolio summary -->
+    <div class="card">
+      <h3>Portfolio</h3>
+      <p>Cash: $<span id="cash-balance">0</span></p>
+      <p>Coin: <span id="coin-balance">0</span></p>
+      <p>P/L: <span id="profit-loss">0</span></p>
+    </div>
+
+    <!-- Trading statistics -->
+    <div class="card">
+      <h3>Trade Statistics</h3>
+      <p>Total Trades: <span id="stat-trades">0</span></p>
+      <p>Win Rate: <span id="stat-winrate">0%</span></p>
+      <p>Total PnL: $<span id="stat-totalpnl">0.00</span></p>
+      <p>Best Trade: $<span id="stat-best">0.00</span></p>
+      <p>Worst Trade: $<span id="stat-worst">0.00</span></p>
+    </div>
+
+    <!-- Reset buttons -->
+    <div class="card">
+      <h3>Reset Controls</h3>
+      <button id="reset-portfolio">Reset Portfolio</button>
+      <button id="reset-orders">Clear Open Orders</button>
+      <button id="reset-history">Clear Trade History</button>
+    </div>
+
+    <!-- Order form -->
+    <div class="card">
+      <h3>Place Order</h3>
+
+      <form id="order-form">
+
+        <!-- Order type selector -->
+        <label>
+          Order Mode
+          <select id="order-mode">
+            <option value="market">Market</option>
+            <option value="limit">Limit</option>
+          </select>
+        </label>
+
+        <!-- Buy / Sell selector -->
+        <label>
+          Side
+          <select id="order-type">
+            <option value="buy">Buy</option>
+            <option value="sell">Sell</option>
+          </select>
+        </label>
+
+        <!-- Limit price input -->
+        <div id="price-row">
+          <label>
+            Price (Limit only)
+            <input type="number" id="order-price" step="0.01">
+          </label>
+        </div>
+
+        <!-- Order amount -->
+        <label>
+          Amount
+          <input type="number" id="order-amount" step="0.0001" required>
+        </label>
+
+        <!-- Form validation errors -->
+        <div id="form-error"></div>
+
+        <!-- Submit button -->
+        <button type="submit">Place Order</button>
+      </form>
+    </div>
+
+  </section>
+
+</main>
+
+<!-- DATA TABLES -->
+<section class="tables">
+
+  <!-- Open orders table -->
+  <div class="table-card">
+    <h3>Open Orders</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Side</th>
+          <th>Mode</th>
+          <th>Price</th>
+          <th>Amount</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody id="orders-table"></tbody>
+    </table>
+  </div>
+
+  <!-- Trade history table -->
+  <div class="table-card">
+    <h3>Trade History</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Open Time</th>
+          <th>Close Time</th>
+          <th>Entry</th>
+          <th>Exit</th>
+          <th>Amount</th>
+          <th>PnL ($)</th>
+        </tr>
+      </thead>
+      <tbody id="trades-table"></tbody>
+    </table>
+  </div>
+
+</section>
+
+<!-- HELP SECTION -->
+<section class="tables">
+  <div class="table-card">
+    <h3>How to Use</h3>
+    <p>• Market orders execute instantly at live price.</p>
+    <p>• Limit orders execute when price reaches your target.</p>
+    <p>• Use timeframe selector to change chart resolution.</p>
+    <p>• SMA shows average trend over recent prices.</p>
+    <p>• Reset buttons allow quick testing.</p>
+    <p>• This simulator uses live Binance prices.</p>
+  </div>
+</section>
+
+<!-- Page footer -->
+<footer>
+  <p>Educational simulator – no real trading.</p>
+  <a href="api-docs.html" target="_blank">API Documentation</a>
+</footer>
+
+<!-- Toast notification popup -->
+<div id="toast" class="toast"></div>
+
+</body>
+</html>

@@ -1,0 +1,626 @@
+/* =====================
+   THEME VARIABLES
+   ===================== */
+
+:root {
+  --bg: #050505;
+  --panel: #0e0e0e;
+  --border: #1f1f1f;
+  --soft: #888;
+  --text: #ffffff;
+  --accent: #ffffff;
+  --positive: #00ff9c;
+  --negative: #ff5c5c;
+  --shadow: 0 8px 24px rgba(0,0,0,0.6);
+}
+
+/* =====================
+   GLOBAL RESET
+   ===================== */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Inter", Arial, Helvetica, sans-serif;
+  background: radial-gradient(circle at top, #111, #000);
+  color: var(--text);
+  line-height: 1.4;
+}
+
+/* =====================
+   TYPOGRAPHY
+   ===================== */
+
+h1 {
+  font-size: 1.6rem;
+  letter-spacing: 0.5px;
+}
+
+h2 {
+  font-size: 1.2rem;
+}
+
+h3 {
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+  color: #eee;
+}
+
+p {
+  font-size: 0.85rem;
+  color: #ccc;
+}
+
+/* =====================
+   HEADER
+   ===================== */
+
+header {
+  background: linear-gradient(to bottom, #111, #050505);
+  padding: 1.25rem;
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+  box-shadow: var(--shadow);
+}
+
+/* =====================
+   STATUS BAR
+   ===================== */
+
+#status {
+  background: #050505;
+  padding: 0.5rem;
+  text-align: center;
+  font-size: 0.75rem;
+  color: #aaa;
+  border-bottom: 1px solid var(--border);
+}
+
+/* =====================
+   DASHBOARD LAYOUT
+   ===================== */
+
+.dashboard {
+  display: grid;
+  grid-template-columns: 2.4fr 1fr;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+/* =====================
+   MARKET PANEL
+   ===================== */
+
+.market {
+  background: var(--panel);
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  padding: 1rem;
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+}
+
+.price-box {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.price {
+  font-size: 2.2rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.timeframe,
+.indicator {
+  margin-top: 0.4rem;
+}
+
+.timeframe select {
+  background: #000;
+}
+
+/* =====================
+   CHART
+   ===================== */
+
+.chart-container {
+  flex: 1;
+  margin-top: 1rem;
+}
+
+/* =====================
+   SIDE PANEL
+   ===================== */
+
+.trading {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* =====================
+   CARD STYLING
+   ===================== */
+
+.card {
+  background: linear-gradient(180deg, #111, #070707);
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  padding: 1rem;
+  box-shadow: var(--shadow);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.card:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.8);
+}
+
+/* =====================
+   STATS PANEL
+   ===================== */
+
+.card p {
+  display: flex;
+  justify-content: space-between;
+  margin: 0.2rem 0;
+}
+
+.card span {
+  font-weight: 600;
+  color: var(--text);
+}
+
+/* =====================
+   PNL COLORS
+   ===================== */
+
+.pnl-positive {
+  color: var(--positive);
+}
+
+.pnl-negative {
+  color: var(--negative);
+}
+
+
+/* =====================
+   FORM CONTROLS
+   ===================== */
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+label {
+  font-size: 0.75rem;
+  color: var(--soft);
+}
+
+input,
+select,
+button {
+  background: #000;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 0.45rem;
+  color: white;
+  font-size: 0.75rem;
+}
+
+input:focus,
+select:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 1px #fff2;
+}
+
+button {
+  background: linear-gradient(180deg, #fff, #ddd);
+  color: #000;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 0.3rem;
+}
+
+button:hover {
+  filter: brightness(0.9);
+}
+
+#form-error {
+  font-size: 0.7rem;
+  color: var(--negative);
+}
+
+/* =====================
+   TABLES
+   ===================== */
+
+.tables {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.table-card {
+  background: var(--panel);
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  padding: 1rem;
+  box-shadow: var(--shadow);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.7rem;
+}
+
+thead {
+  background: #080808;
+  position: sticky;
+  top: 0;
+}
+
+th {
+  color: #aaa;
+  text-align: left;
+  font-weight: 500;
+}
+
+th, td {
+  padding: 0.4rem;
+  border-bottom: 1px solid var(--border);
+}
+
+tbody tr:nth-child(even) {
+  background: #070707;
+}
+
+tbody tr:hover {
+  background: #101010;
+}
+
+/* =====================
+   BUTTONS
+   ===================== */
+
+.cancel-btn {
+  background: #111;
+  border: 1px solid #333;
+  color: #fff;
+  font-size: 0.65rem;
+  padding: 0.2rem 0.5rem;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.cancel-btn:hover {
+  background: #222;
+}
+
+/* =====================
+   FOOTER
+   ===================== */
+
+footer {
+  text-align: center;
+  font-size: 0.7rem;
+  color: #777;
+  padding: 1rem;
+  border-top: 1px solid var(--border);
+}
+
+/* =====================
+   RESPONSIVE
+   ===================== */
+
+@media (max-width: 1000px) {
+  .dashboard {
+    grid-template-columns: 1fr;
+  }
+
+  .tables {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* =====================
+   RESET CONTROLS
+   ===================== */
+
+.card button {
+  margin-bottom: 0.4rem;
+}
+
+.card button:last-child {
+  margin-bottom: 0;
+}
+
+/* =====================
+   HELP PANEL
+   ===================== */
+
+.table-card p {
+  font-size: 0.75rem;
+  line-height: 1.4;
+  color: #bbb;
+  margin-bottom: 0.4rem;
+}
+
+/* =====================
+   FORM VALIDATION FEEDBACK
+   ===================== */
+
+input.invalid {
+  border-color: var(--negative);
+  box-shadow: 0 0 0 1px rgba(255,92,92,0.4);
+}
+
+#form-error {
+  margin-top: 0.3rem;
+  min-height: 14px;
+}
+
+
+/* =====================
+   PRICE FLASH ANIMATION
+   ===================== */
+.price-flash {
+  color: #00ff88;
+  transition: color 0.3s ease;
+}
+
+
+/* =====================
+   STATUS BAR
+   ===================== */
+#status-bar {
+  text-align: center;
+  font-size: 0.8rem;
+  padding: 6px;
+  color: #aaa;
+  border-bottom: 1px solid #222;
+}
+
+/* =====================
+   PNL COLOR HIGHLIGHT
+   ===================== */
+
+#profit-loss.pnl-positive {
+  color: var(--positive);
+}
+
+#profit-loss.pnl-negative {
+  color: var(--negative);
+}
+
+/* =========================
+   Button Hover Feedback
+   ========================= */
+
+button {
+  transition: 
+    transform 0.15s ease,
+    background-color 0.15s ease,
+    box-shadow 0.15s ease,
+    opacity 0.15s ease;
+  cursor: pointer;
+}
+
+/* Hover effect */
+button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.25);
+  opacity: 0.95;
+}
+
+/* Click effect */
+button:active {
+  transform: translateY(0);
+  box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+}
+
+/* Disabled buttons */
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+
+/* =====================
+   BUTTON MICRO-ANIMATION
+   ===================== */
+
+button {
+  transition: transform 0.12s ease, filter 0.12s ease;
+}
+
+button:active {
+  transform: scale(0.97);
+}
+
+/* =====================
+   COIN TITLE WITH LOGO
+   ===================== */
+.coin-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.coin-logo {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+  filter: drop-shadow(0 0 4px rgba(255,255,255,0.25));
+}
+
+
+/* ================= INDICATOR TOGGLES ================= */
+
+.indicator-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-top: 16px;
+}
+
+.indicator-toggle label {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  user-select: none;
+}
+
+/* Hide default checkbox */
+.indicator-toggle input {
+  display: none;
+}
+
+/* Toggle track */
+.indicator-toggle .slider {
+  width: 42px;
+  height: 22px;
+  background: #222;
+  border-radius: 999px;
+  position: relative;
+  transition: all 0.25s ease;
+  box-shadow: inset 0 0 4px rgba(0,0,0,0.6);
+}
+
+/* Toggle knob */
+.indicator-toggle .slider::after {
+  content: "";
+  width: 18px;
+  height: 18px;
+  background: #888;
+  border-radius: 50%;
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  transition: all 0.25s ease;
+}
+
+/* Checked state */
+.indicator-toggle input:checked + .slider {
+  background: linear-gradient(135deg, #00ffaa, #00ccff);
+  box-shadow: 0 0 8px rgba(0,255,200,0.6);
+}
+
+.indicator-toggle input:checked + .slider::after {
+  transform: translateX(20px);
+  background: #000;
+}
+
+/* Label text */
+.indicator-toggle .label-text {
+  color: #ddd;
+  font-size: 0.95rem;
+  letter-spacing: 0.3px;
+}
+
+/* Hover feedback */
+.indicator-toggle label:hover .slider {
+  filter: brightness(1.15);
+}
+
+/* ===== Timeframe Toggle ===== */
+
+.timeframe {
+  margin-bottom: 18px;
+}
+
+.timeframe-label {
+  font-size: 0.9rem;
+  opacity: 0.7;
+  margin-bottom: 6px;
+}
+
+.timeframe-toggle {
+  display: flex;
+  gap: 10px;
+}
+
+.tf-btn {
+  background: #111;
+  color: #ccc;
+  border: 1px solid #222;
+  border-radius: 14px;
+  padding: 8px 16px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+}
+
+.tf-btn:hover {
+  background: #1b1b1b;
+}
+
+.tf-btn.active {
+  background: #000;
+  color: #fff;
+  border-color: #00ffaa;
+  box-shadow: 0 0 10px rgba(0,255,170,0.35);
+}
+
+#offline-banner {
+  background: #2b0000;
+  border: 1px solid #ff4444;
+  color: #ffaaaa;
+  padding: 12px;
+  margin: 12px;
+  border-radius: 8px;
+  text-align: center;
+  font-weight: 600;
+}
+
+/* ================= TOAST NOTIFICATION ================= */
+
+.toast {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background: #111;
+  color: #fff;
+  padding: 14px 22px;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.6);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(20px);
+  transition: all 0.3s ease;
+  font-weight: 500;
+  z-index: 9999;
+}
+
+.toast.show {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.toast.success {
+  border-left: 4px solid #00ff88;
+}
+
+.toast.error {
+  border-left: 4px solid #ff4444;
+}
+
+.toast.warning {
+  border-left: 4px solid #ffaa00;
+}
+
